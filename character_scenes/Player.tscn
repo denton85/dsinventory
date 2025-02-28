@@ -1,10 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://c63eej6xt5t0b"]
+[gd_scene load_steps=7 format=3 uid="uid://c63eej6xt5t0b"]
 
 [ext_resource type="Script" path="res://character_scenes/player.gd" id="1_fl6uj"]
+[ext_resource type="Script" path="res://inventory/inventory.gd" id="2_1oopm"]
+[ext_resource type="PackedScene" uid="uid://dep7vixw4qj7m" path="res://inventory/inventory.tscn" id="3_7tx4k"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_i3plt"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_oce7q"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_28cvs"]
+size = Vector3(0.3, 0.3, 3)
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_fl6uj")
@@ -25,3 +30,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 [node name="CSGBox3D" type="CSGBox3D" parent="Head/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.52689, -0.597573, -0.948149)
 size = Vector3(0.1, 0.1, 1.5)
+
+[node name="PickupItem" type="Area3D" parent="Head/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+collision_layer = 128
+collision_mask = 128
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Head/Camera3D/PickupItem"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -1)
+shape = SubResource("BoxShape3D_28cvs")
+
+[node name="Inventory" type="Node" parent="."]
+script = ExtResource("2_1oopm")
+
+[node name="InventoryUI" parent="." instance=ExtResource("3_7tx4k")]
+visible = false
+
+[connection signal="area_entered" from="Head/Camera3D/PickupItem" to="." method="_on_pickup_item_area_entered"]
+[connection signal="area_exited" from="Head/Camera3D/PickupItem" to="." method="_on_pickup_item_area_exited"]

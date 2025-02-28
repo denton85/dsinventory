@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dgdogyfvaib4h"]
+[gd_scene load_steps=8 format=3 uid="uid://dgdogyfvaib4h"]
 
 [ext_resource type="Material" uid="uid://d2nc7y28lnad4" path="res://materials/rustybrown.tres" id="1_0iosc"]
 [ext_resource type="PackedScene" uid="uid://c63eej6xt5t0b" path="res://character_scenes/Player.tscn" id="1_dyn4g"]
 [ext_resource type="Material" uid="uid://xb55oujyq43t" path="res://materials/roughgreen.tres" id="2_bbjwg"]
+[ext_resource type="PackedScene" uid="uid://dqfk3x3gabut1" path="res://inventory/item_scene.tscn" id="4_p7ads"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_notdo"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -78,3 +79,6 @@ size = Vector3(100, 1, 100)
 
 [node name="Player" parent="." instance=ExtResource("1_dyn4g")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.176766, 0.832317, 0.0457153)
+
+[node name="ItemScene" parent="." instance=ExtResource("4_p7ads")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.39864, 1.5, -3.66315)

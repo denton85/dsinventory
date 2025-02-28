@@ -3,12 +3,16 @@ extends CharacterBody3D
 
 const WALK_SPEED = 4.0
 const SPRINT_SPEED = 6.0
-const JUMP_VELOCITY = 4.5
+const JUMP_VELOCITY = 4
 const SENSITIVITY = 0.001
 var speed = WALK_SPEED
 
 @onready var head: Node3D = $Head
 @onready var camera: Camera3D = $Head/Camera3D
+@onready var inventory_ui: Control = $InventoryUI
+@onready var inventory: Inventory = $Inventory
+
+var current_focused_item: ItemScene = null
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -28,6 +32,13 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 		
+	if Input.is_action_just_pressed("toggle_inventory"):
+		inventory_ui.visible = !inventory_ui.visible
+		
+	if Input.is_action_just_pressed("interact"):
+		if current_focused_item != null:
+			inventory.pickup_item(current_focused_item)
+		
 	if Input.is_action_pressed("sprint"):
 		speed = SPRINT_SPEED
 	else:
@@ -43,11 +54,30 @@ func _physics_process(delta: float) -> void:
 		else:
 			velocity.x = move_toward(velocity.x, 0, (speed * 4) * delta)
 			velocity.z = move_toward(velocity.z, 0, (speed * 4) * delta)
+
 	else:
 		velocity.x = lerp(velocity.x, direction.x * speed, delta * 2.0)
+		velocity.z = lerp(velocity.z, direction.z * speed, delta * 2.0)
 		
-	var velocity_clamped = clamp(velocity.length(), WALK_SPEED, SPRINT_SPEED)
-	var target_fov = Settings.fov + Settings.fov_change * velocity_clamped
-	camera.fov = lerp(camera.fov, target_fov, delta * 10.0)
+		
+	#var velocity_clamped = clamp(velocity.length(), WALK_SPEED, SPRINT_SPEED)
+	#var target_fov = Settings.fov + Settings.fov_change * velocity_clamped
+	#camera.fov = lerp(camera.fov, target_fov, delta * 10.0)
 
 	move_and_slide()
+
+
+func _on_pickup_item_area_entered(area: Area3D) -> void:
+	if current_focused_item != null:
+		return
+
+	var i = area.get_parent()
+	if i is ItemScene:
+		current_focused_item = i
+
+
+func _on_pickup_item_area_exited(area: Area3D) -> void:
+	#TODO fix this later in case of overlapping items
+	var i = area.get_parent()
+	if i is ItemScene:
+		current_focused_item = null

@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://dqfk3x3gabut1"]
+
+[ext_resource type="Script" path="res://inventory/item_scene.gd" id="1_7wbqg"]
+[ext_resource type="Resource" uid="uid://dg14wj620n3eh" path="res://inventory/items/pistol.tres" id="2_xmthp"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_5npir"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_cikhs"]
+radius = 1.0
+
+[node name="ItemScene" type="Node3D"]
+script = ExtResource("1_7wbqg")
+item = ExtResource("2_xmthp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_5npir")
+
+[node name="InteractAble" type="Area3D" parent="."]
+collision_layer = 128
+collision_mask = 128
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractAble"]
+shape = SubResource("SphereShape3D_cikhs")
+
+[connection signal="body_entered" from="InteractAble" to="." method="_on_interact_able_body_entered"]
+[connection signal="body_exited" from="InteractAble" to="." method="_on_interact_able_body_exited"]

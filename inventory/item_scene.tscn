@@ -15,12 +15,12 @@ item = ExtResource("2_xmthp")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_5npir")
 
-[node name="InteractAble" type="Area3D" parent="."]
+[node name="Interactable" type="Area3D" parent="."]
 collision_layer = 128
 collision_mask = 128
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractAble"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactable"]
 shape = SubResource("SphereShape3D_cikhs")
 
-[connection signal="body_entered" from="InteractAble" to="." method="_on_interact_able_body_entered"]
-[connection signal="body_exited" from="InteractAble" to="." method="_on_interact_able_body_exited"]
+[connection signal="body_entered" from="Interactable" to="." method="_on_interact_able_body_entered"]
+[connection signal="body_exited" from="Interactable" to="." method="_on_interact_able_body_exited"]

@@ -2,7 +2,6 @@ class_name ItemScene
 extends Node3D
 
 @onready var mesh_instance_3d: MeshInstance3D = $MeshInstance3D
-
 @export var item: Item
 
 var in_range = false

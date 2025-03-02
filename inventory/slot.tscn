@@ -8,15 +8,18 @@ offset_right = 64.0
 offset_bottom = 64.0
 script = ExtResource("1_re5ch")
 
-[node name="ItemDisplay" type="Sprite2D" parent="."]
-
 [node name="ItemName" type="Label" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 13.0
+offset_top = 68.0
+offset_right = 53.0
+offset_bottom = 91.0
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
 color = Color(0.329158, 0.329158, 0.329158, 1)
+
+[node name="ItemDisplay" type="Sprite2D" parent="."]
+position = Vector2(32, 32)

@@ -1,0 +1,67 @@
+extends TextureRect
+
+@onready var item_name: Label = $ItemName
+var slot_index: int
+var hovering = false
+@onready var inventory_ui: Control = $"../.."
+
+func _ready():
+	update(null)
+
+func update(item: Item):
+	if item == null:
+		texture = null
+		item_name.text = ""
+		return
+	item_name.text = ""
+	texture = item.texture
+	item_name.text = item.name
+
+
+func _on_mouse_entered() -> void:
+	hovering = true
+
+
+func _on_mouse_exited() -> void:
+	hovering = false
+
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("drop_item") and hovering == true:
+		Global.playervar.inventory.drop_item(slot_index)
+	if Input.is_action_just_pressed("left_click") and hovering == true:
+		inventory_ui.from_slot = slot_index
+		print(inventory_ui.from_slot)
+	if Input.is_action_just_released("left_click") and hovering == true:
+		inventory_ui.to_slot = slot_index
+		if inventory_ui.from_slot != null and inventory_ui.to_slot != null:
+			Global.playervar.inventory.swap_two_slots(inventory_ui.from_slot, inventory_ui.to_slot)
+		print(inventory_ui.from_slot)
+		print(inventory_ui.to_slot)
+		inventory_ui.from_slot = null
+		inventory_ui.to_slot = null
+
+
+func _on_focus_entered() -> void:
+	hovering = true
+	print("Hovered")
+
+func _on_focus_exited() -> void:
+	hovering = false
+
+func _get_drag_data(at_position: Vector2) -> Variant:
+	var preview_texture = TextureRect.new()
+	preview_texture.texture = texture
+	preview_texture.expand_mode = 1
+	preview_texture.size = Vector2(32.0, 32.0)
+	
+	var preview = Control.new()
+	preview.add_child(preview_texture)
+	set_drag_preview(preview)
+	
+	return preview_texture.texture
+	
+func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
+	return data is Texture2D
+
+func _drop_data(at_position: Vector2, data: Variant) -> void:
+	pass

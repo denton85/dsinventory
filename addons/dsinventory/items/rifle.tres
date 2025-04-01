@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://d20f2o7v07w5m"]
+
+[ext_resource type="ArrayMesh" uid="uid://bopb2ktu6pj00" path="res://assets/rifle.obj" id="1_c3f6e"]
+[ext_resource type="Script" uid="uid://b72g3dabbtxb" path="res://addons/dsinventory/item.gd" id="1_k5vmf"]
+[ext_resource type="Texture2D" uid="uid://d0usujncetcgl" path="res://rifle.webp" id="2_6k4q7"]
+
+[resource]
+script = ExtResource("1_k5vmf")
+name = "Rifle"
+texture = ExtResource("2_6k4q7")
+mesh = ExtResource("1_c3f6e")

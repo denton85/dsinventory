@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://cyvbwenxwvij5"]
+
+[ext_resource type="Script" uid="uid://dhiiccfjrwv85" path="res://addons/dsinventory/inventory/slot.gd" id="1_re5ch"]
+
+[node name="Slot" type="TextureRect"]
+custom_minimum_size = Vector2(64, 64)
+offset_right = 64.0
+offset_bottom = 64.0
+expand_mode = 1
+script = ExtResource("1_re5ch")
+
+[node name="ItemName" type="Label" parent="."]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 68.0
+offset_right = 53.0
+offset_bottom = 91.0
+text = "Test"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+show_behind_parent = true
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+mouse_filter = 2
+color = Color(0.329158, 0.329158, 0.329158, 1)
+
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="focus_exited" from="." to="." method="_on_focus_exited"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

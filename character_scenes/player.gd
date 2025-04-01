@@ -11,11 +11,14 @@ var speed = WALK_SPEED
 @onready var camera: Camera3D = $Head/Camera3D
 @onready var inventory_ui: Control = $InventoryUI
 @onready var inventory: Inventory = $Inventory
+@onready var drop_location: Node3D = $Head/DropLocation
 
 var current_focused_item: ItemScene = null
+var next_focused_items: Array = []
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	Global.playervar = self
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
@@ -34,10 +37,16 @@ func _physics_process(delta: float) -> void:
 		
 	if Input.is_action_just_pressed("toggle_inventory"):
 		inventory_ui.visible = !inventory_ui.visible
+		if inventory_ui.visible == true:
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		else:
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	
 		
 	if Input.is_action_just_pressed("interact"):
 		if current_focused_item != null:
 			inventory.pickup_item(current_focused_item)
+			current_focused_item.queue_free()
 		
 	if Input.is_action_pressed("sprint"):
 		speed = SPRINT_SPEED
@@ -67,17 +76,51 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
-func _on_pickup_item_area_entered(area: Area3D) -> void:
-	if current_focused_item != null:
-		return
+#func _on_pickup_item_area_entered(area: Area3D) -> void:
+	#var i = area.get_parent()
+	#if i is ItemScene:
+		#if current_focused_item != null:
+			#next_focused_items.append(i)
+		#else:
+			#current_focused_item = i
+#
+#
+#func _on_pickup_item_area_exited(area: Area3D) -> void:
+	##TODO fix this later in case of overlapping items
+	#var i = area.get_parent()
+	#if i is ItemScene:
+		#if current_focused_item == i:
+			#current_focused_item = null
+			#if next_focused_items.is_empty():
+				#return
+			#else:
+				#current_focused_item = next_focused_items[0]
+				#next_focused_items.remove_at(0)
+		#else:
+			#var index = next_focused_items.find(i)
+			#next_focused_items.remove_at(index)
 
-	var i = area.get_parent()
-	if i is ItemScene:
-		current_focused_item = i
+
+func _on_item_detect_body_entered(body: Node3D) -> void:
+	if body is ItemScene:
+		print("Entered")
+		if current_focused_item != null:
+			next_focused_items.append(body)
+		else:
+			current_focused_item = body
 
 
-func _on_pickup_item_area_exited(area: Area3D) -> void:
+func _on_item_detect_body_exited(body: Node3D) -> void:
 	#TODO fix this later in case of overlapping items
-	var i = area.get_parent()
-	if i is ItemScene:
-		current_focused_item = null
+	if body is ItemScene:
+		print("Exited")
+		if current_focused_item == body:
+			current_focused_item = null
+			if next_focused_items.is_empty():
+				return
+			else:
+				current_focused_item = next_focused_items[0]
+				next_focused_items.remove_at(0)
+		else:
+			var index = next_focused_items.find(body)
+			next_focused_items.remove_at(index)

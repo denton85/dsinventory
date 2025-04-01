@@ -1,3 +1,4 @@
+class_name InventoryUI
 extends Control
 
 @onready var grid_container: GridContainer = $GridContainer
@@ -5,6 +6,7 @@ extends Control
 
 var from_slot = null
 var to_slot = null
+var parent = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -13,10 +15,6 @@ func _ready() -> void:
 	for slot in grid_container.get_children():
 		slot.slot_index = i
 		i = i + 1
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 
 func update_slots():
 	var i = 0

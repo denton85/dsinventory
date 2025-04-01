@@ -1,12 +1,11 @@
 [gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://dg14wj620n3eh"]
 
-[ext_resource type="Script" uid="uid://b72g3dabbtxb" path="res://addons/dsinventory/item.gd" id="1_jwvur"]
-[ext_resource type="Texture2D" uid="uid://cacisdwsna4x4" path="res://pistol.webp" id="2_pa2cs"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_con8j"]
+[ext_resource type="ArrayMesh" uid="uid://cc37mkcwenvui" path="res://assets/pistol.obj" id="1_0o10o"]
+[ext_resource type="Script" uid="uid://b72g3dabbtxb" path="res://addons/dsinventory/item.gd" id="2_a01u5"]
+[ext_resource type="Texture2D" uid="uid://cacisdwsna4x4" path="res://pistol.webp" id="3_y4c4l"]
 
 [resource]
-script = ExtResource("1_jwvur")
+script = ExtResource("2_a01u5")
 name = "Pistol"
-texture = ExtResource("2_pa2cs")
-mesh = SubResource("BoxMesh_con8j")
+texture = ExtResource("3_y4c4l")
+mesh = ExtResource("1_0o10o")

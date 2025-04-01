@@ -18,6 +18,7 @@ var next_focused_items: Array = []
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	inventory_ui.parent = self
 	Global.playervar = self
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -74,32 +75,6 @@ func _physics_process(delta: float) -> void:
 	#camera.fov = lerp(camera.fov, target_fov, delta * 10.0)
 
 	move_and_slide()
-
-
-#func _on_pickup_item_area_entered(area: Area3D) -> void:
-	#var i = area.get_parent()
-	#if i is ItemScene:
-		#if current_focused_item != null:
-			#next_focused_items.append(i)
-		#else:
-			#current_focused_item = i
-#
-#
-#func _on_pickup_item_area_exited(area: Area3D) -> void:
-	##TODO fix this later in case of overlapping items
-	#var i = area.get_parent()
-	#if i is ItemScene:
-		#if current_focused_item == i:
-			#current_focused_item = null
-			#if next_focused_items.is_empty():
-				#return
-			#else:
-				#current_focused_item = next_focused_items[0]
-				#next_focused_items.remove_at(0)
-		#else:
-			#var index = next_focused_items.find(i)
-			#next_focused_items.remove_at(index)
-
 
 func _on_item_detect_body_entered(body: Node3D) -> void:
 	if body is ItemScene:

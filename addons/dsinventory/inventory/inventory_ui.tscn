@@ -1,0 +1,81 @@
+[gd_scene load_steps=3 format=3 uid="uid://dep7vixw4qj7m"]
+
+[ext_resource type="Script" uid="uid://bbbnwqhfw0wn5" path="res://addons/dsinventory/inventory/inventory_ui.gd" id="1_633jv"]
+[ext_resource type="PackedScene" uid="uid://cyvbwenxwvij5" path="res://addons/dsinventory/inventory/slot.tscn" id="2_a0nm8"]
+
+[node name="InventoryUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_633jv")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -200.0
+offset_right = 250.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.756863, 1, 0.396078)
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 40
+theme_override_constants/v_separation = 40
+columns = 4
+
+[node name="Slot" parent="GridContainer" instance=ExtResource("2_a0nm8")]
+layout_mode = 2
+
+[node name="Slot2" parent="GridContainer" instance=ExtResource("2_a0nm8")]
+layout_mode = 2
+
+[node name="Slot3" parent="GridContainer" instance=ExtResource("2_a0nm8")]
+layout_mode = 2
+
+[node name="Slot4" parent="GridContainer" instance=ExtResource("2_a0nm8")]
+layout_mode = 2
+
+[node name="Slot5" parent="GridContainer" instance=ExtResource("2_a0nm8")]
+layout_mode = 2
+
+[node name="Slot6" parent="GridContainer" instance=ExtResource("2_a0nm8")]
+layout_mode = 2
+
+[node name="Slot7" parent="GridContainer" instance=ExtResource("2_a0nm8")]
+layout_mode = 2
+
+[node name="Slot8" parent="GridContainer" instance=ExtResource("2_a0nm8")]
+layout_mode = 2
+
+[node name="Slot9" parent="GridContainer" instance=ExtResource("2_a0nm8")]
+layout_mode = 2
+
+[node name="Slot10" parent="GridContainer" instance=ExtResource("2_a0nm8")]
+layout_mode = 2
+
+[node name="Slot11" parent="GridContainer" instance=ExtResource("2_a0nm8")]
+layout_mode = 2
+
+[node name="Slot12" parent="GridContainer" instance=ExtResource("2_a0nm8")]
+layout_mode = 2

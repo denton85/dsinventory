@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://fgkkjs64q5ew" path="res://character_scenes/player.gd" id="1_fl6uj"]
 [ext_resource type="Script" uid="uid://yqiegexr76au" path="res://addons/dsinventory/inventory/inventory.gd" id="2_1oopm"]
 [ext_resource type="Script" uid="uid://ixtn7yrm4lcq" path="res://addons/dsinventory/item_detect.gd" id="2_r8pmr"]
-[ext_resource type="PackedScene" uid="uid://dep7vixw4qj7m" path="res://addons/dsinventory/inventory/inventory.tscn" id="3_7tx4k"]
+[ext_resource type="PackedScene" uid="uid://dep7vixw4qj7m" path="res://addons/dsinventory/inventory/inventory_ui.tscn" id="3_r8pmr"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_i3plt"]
 
@@ -46,11 +46,12 @@ shape = SubResource("BoxShape3D_28cvs")
 [node name="DropLocation" type="Node3D" parent="Head"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
 
+[node name="InventoryUI" parent="." instance=ExtResource("3_r8pmr")]
+visible = false
+
 [node name="Inventory" type="Node" parent="."]
 script = ExtResource("2_1oopm")
-
-[node name="InventoryUI" parent="." instance=ExtResource("3_7tx4k")]
-visible = false
+metadata/_custom_type_script = "uid://yqiegexr76au"
 
 [connection signal="body_entered" from="Head/Camera3D/ItemDetect" to="." method="_on_item_detect_body_entered"]
 [connection signal="body_exited" from="Head/Camera3D/ItemDetect" to="." method="_on_item_detect_body_exited"]

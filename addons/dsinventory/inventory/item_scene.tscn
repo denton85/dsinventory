@@ -2,13 +2,13 @@
 
 [ext_resource type="Script" uid="uid://g6wi01qrgpvh" path="res://addons/dsinventory/inventory/item_scene.gd" id="1_7wbqg"]
 [ext_resource type="Resource" uid="uid://dg14wj620n3eh" path="res://addons/dsinventory/items/pistol.tres" id="2_xmthp"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_con8j"]
+[ext_resource type="ArrayMesh" uid="uid://cc37mkcwenvui" path="res://assets/pistol.obj" id="3_oriky"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_cikhs"]
 radius = 1.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_slv10"]
+size = Vector3(0.2, 0.7, 1.5)
 
 [node name="ItemScene" type="RigidBody3D"]
 collision_layer = 192
@@ -16,7 +16,7 @@ script = ExtResource("1_7wbqg")
 item = ExtResource("2_xmthp")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_con8j")
+mesh = ExtResource("3_oriky")
 
 [node name="Interactable" type="Area3D" parent="."]
 collision_layer = 128

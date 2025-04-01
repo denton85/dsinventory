@@ -69,26 +69,19 @@ func _physics_process(delta: float) -> void:
 		velocity.x = lerp(velocity.x, direction.x * speed, delta * 2.0)
 		velocity.z = lerp(velocity.z, direction.z * speed, delta * 2.0)
 		
-		
-	#var velocity_clamped = clamp(velocity.length(), WALK_SPEED, SPRINT_SPEED)
-	#var target_fov = Settings.fov + Settings.fov_change * velocity_clamped
-	#camera.fov = lerp(camera.fov, target_fov, delta * 10.0)
 
 	move_and_slide()
 
 func _on_item_detect_body_entered(body: Node3D) -> void:
 	if body is ItemScene:
-		print("Entered")
 		if current_focused_item != null:
 			next_focused_items.append(body)
 		else:
 			current_focused_item = body
 
-
 func _on_item_detect_body_exited(body: Node3D) -> void:
 	#TODO fix this later in case of overlapping items
 	if body is ItemScene:
-		print("Exited")
 		if current_focused_item == body:
 			current_focused_item = null
 			if next_focused_items.is_empty():

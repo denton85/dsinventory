@@ -1,7 +1,8 @@
 extends TextureRect
 
 @onready var item_name: Label = $ItemName
-@onready var inventory_ui: Control = $"../.."
+@onready var inventory_ui: InventoryUI = $"../../../.."
+
 var slot_index: int
 var hovering = false
 var menu_hovering = false
@@ -26,7 +27,7 @@ func _on_mouse_exited() -> void:
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("drop_item") and hovering == true:
-		inventory_ui.parent.inventory.drop_item(slot_index)
+		inventory_ui.inventory.drop_item(slot_index)
 		
 	if Input.is_action_just_pressed("right_click") and hovering == true:
 		menu_hovering = true
@@ -38,7 +39,7 @@ func _process(delta: float) -> void:
 		inventory_ui.to_slot = slot_index
 		
 		if inventory_ui.from_slot != null and inventory_ui.to_slot != null:
-			inventory_ui.parent.inventory.swap_two_slots(inventory_ui.from_slot, inventory_ui.to_slot)
+			inventory_ui.inventory.swap_two_slots(inventory_ui.from_slot, inventory_ui.to_slot)
 		
 		inventory_ui.from_slot = null
 		inventory_ui.to_slot = null
@@ -73,7 +74,7 @@ func _drop_data(at_position: Vector2, data: Variant) -> void:
 
 func _on_drop_pressed() -> void:
 	%MenuPanel.visible = !%MenuPanel.visible
-	inventory_ui.parent.inventory.drop_item(slot_index)
+	inventory_ui.inventory.drop_item(slot_index)
 
 
 func _on_menu_panel_mouse_exited() -> void:

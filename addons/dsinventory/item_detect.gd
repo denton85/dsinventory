@@ -31,3 +31,14 @@ func _on_item_detect_body_exited(body: Node3D) -> void:
 		else:
 			var index = next_focused_items.find(body)
 			next_focused_items.remove_at(index)
+
+func _unhandled_key_input(event: InputEvent) -> void:
+	if event.is_action_pressed("pickup"):
+		if current_focused_item != null:
+			#TODO Check if the inventory is full
+			var size = inventory.inventory.size()
+			for i in size:
+				if inventory.inventory[i] == null:
+					inventory.pickup_item(current_focused_item)
+					current_focused_item.queue_free()
+					break

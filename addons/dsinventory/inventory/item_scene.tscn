@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://g6wi01qrgpvh" path="res://addons/dsinventory/inventory/item_scene.gd" id="1_7wbqg"]
 [ext_resource type="Resource" uid="uid://dg14wj620n3eh" path="res://addons/dsinventory/items/pistol.tres" id="2_xmthp"]
-[ext_resource type="ArrayMesh" uid="uid://cc37mkcwenvui" path="res://assets/pistol.obj" id="3_oriky"]
+[ext_resource type="ArrayMesh" uid="uid://cc37mkcwenvui" path="res://addons/dsinventory/items/test_assets/pistol.obj" id="3_oriky"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_cikhs"]
 radius = 1.0

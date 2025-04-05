@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d0usujncetcgl"
-path="res://.godot/imported/rifle.webp-ec23f693b8787030f1651fd971f4b58b.ctex"
+uid="uid://cacisdwsna4x4"
+path="res://.godot/imported/pistol.webp-6f26c17cff7ce885a1b249464f9477ea.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/rifle.webp"
-dest_files=["res://.godot/imported/rifle.webp-ec23f693b8787030f1651fd971f4b58b.ctex"]
+source_file="res://addons/dsinventory/items/test_assets/pistol.webp"
+dest_files=["res://.godot/imported/pistol.webp-6f26c17cff7ce885a1b249464f9477ea.ctex"]
 
 [params]
 

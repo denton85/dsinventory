@@ -12,7 +12,7 @@ const ITEM_SCENE = preload("res://addons/dsinventory/inventory/item_scene.tscn")
 func _ready() -> void:
 	inventory.resize(inventory_size)
 
-func add_to_inventory(item, index):
+func add_to_inventory(item: Item, index):
 	inventory[index] = item
 	update_inventory_ui.emit()
 	

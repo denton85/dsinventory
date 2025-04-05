@@ -17,7 +17,6 @@ var speed = WALK_SPEED
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	inventory_ui.parent = self
 	Global.playervar = self
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -34,24 +33,6 @@ func _physics_process(delta: float) -> void:
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-		
-	if Input.is_action_just_pressed("toggle_inventory"):
-		inventory_ui.visible = !inventory_ui.visible
-		if inventory_ui.visible == true:
-			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		else:
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	
-		
-	if Input.is_action_just_pressed("interact"):
-		if item_detect.current_focused_item != null:
-			#TODO Check if the inventory is full
-			var size = inventory.inventory.size()
-			for i in size:
-				if inventory.inventory[i] == null:
-					inventory.pickup_item(item_detect.current_focused_item)
-					item_detect.current_focused_item.queue_free()
-					break
 		
 	if Input.is_action_pressed("sprint"):
 		speed = SPRINT_SPEED

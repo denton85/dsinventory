@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://c63eej6xt5t0b"]
+
+[ext_resource type="Script" uid="uid://fgkkjs64q5ew" path="res://character_scenes/player.gd" id="1_fl6uj"]
+[ext_resource type="Script" uid="uid://yqiegexr76au" path="res://addons/dsinventory/inventory/inventory.gd" id="2_1oopm"]
+[ext_resource type="Script" uid="uid://ixtn7yrm4lcq" path="res://addons/dsinventory/item_detect.gd" id="2_r8pmr"]
+[ext_resource type="PackedScene" uid="uid://dep7vixw4qj7m" path="res://addons/dsinventory/inventory/inventory_ui.tscn" id="3_r8pmr"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_i3plt"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_oce7q"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_28cvs"]
+size = Vector3(0.3, 0.3, 3)
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_fl6uj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_i3plt")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_oce7q")
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Head"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Head/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.52689, -0.597573, -0.948149)
+size = Vector3(0.1, 0.1, 1.5)
+
+[node name="ItemDetect" type="Area3D" parent="Head/Camera3D" node_paths=PackedStringArray("inventory")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+collision_layer = 128
+collision_mask = 128
+script = ExtResource("2_r8pmr")
+inventory = NodePath("../../../Inventory")
+metadata/_custom_type_script = "uid://ixtn7yrm4lcq"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Head/Camera3D/ItemDetect"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.94862, -1.60551)
+shape = SubResource("BoxShape3D_28cvs")
+
+[node name="DropLocation" type="Node3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+
+[node name="InventoryUI" parent="." instance=ExtResource("3_r8pmr")]
+visible = false
+
+[node name="Inventory" type="Node" parent="."]
+script = ExtResource("2_1oopm")
+metadata/_custom_type_script = "uid://yqiegexr76au"

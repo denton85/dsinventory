@@ -1,13 +1,13 @@
 class_name InventoryUI
 extends Control
 
-@onready var grid_container: GridContainer = $GridContainer
+@onready var grid_container: GridContainer = %GridContainer
+
 @onready var inventory: Inventory = $"../Inventory"
-const SLOT = preload("res://addons/dsinventory/inventory/slot.tscn")
+const SLOT = preload("res://addons/dsinventory/inventory/slot_ui.tscn")
 
 var from_slot = null
 var to_slot = null
-var parent = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -30,3 +30,11 @@ func update_slots():
 		else:
 			slot.update(null)
 		i = i + 1
+
+func _unhandled_key_input(event: InputEvent) -> void:
+	if event.is_action_pressed("toggle_inventory"):
+		visible = !visible
+		if visible == true:
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		else:
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)

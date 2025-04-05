@@ -27,7 +27,7 @@ func _on_mouse_exited() -> void:
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("drop_item") and hovering == true:
-		inventory_ui.inventory.drop_item(slot_index)
+		drop_hovered_item()
 		
 	if Input.is_action_just_pressed("right_click") and hovering == true:
 		menu_hovering = true
@@ -74,8 +74,10 @@ func _drop_data(at_position: Vector2, data: Variant) -> void:
 
 func _on_drop_pressed() -> void:
 	%MenuPanel.visible = !%MenuPanel.visible
-	inventory_ui.inventory.drop_item(slot_index)
-
+	drop_hovered_item()
 
 func _on_menu_panel_mouse_exited() -> void:
 	menu_hovering = false
+
+func drop_hovered_item():
+	inventory_ui.inventory.drop_item(slot_index, inventory_ui.drop_location.global_position)

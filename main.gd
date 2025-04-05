@@ -1,4 +1,4 @@
 extends Node3D
 
 func _ready() -> void:
-	Global.main = self
+	DSGlobal.main = self

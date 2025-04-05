@@ -1,8 +1,11 @@
 class_name InventoryUI
 extends Control
 
-@onready var grid_container: GridContainer = %GridContainer
+#Assign a drop location on the player somewhere, this will be where the item gets dropped
+@export var drop_location: Node3D
 
+
+@onready var grid_container: GridContainer = %GridContainer
 @onready var inventory: Inventory = $"../Inventory"
 const SLOT = preload("res://addons/dsinventory/inventory/slot_ui.tscn")
 

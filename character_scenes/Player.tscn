@@ -47,8 +47,9 @@ shape = SubResource("BoxShape3D_28cvs")
 [node name="DropLocation" type="Node3D" parent="Head"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
 
-[node name="InventoryUI" parent="." instance=ExtResource("3_r8pmr")]
+[node name="InventoryUI" parent="." node_paths=PackedStringArray("drop_location") instance=ExtResource("3_r8pmr")]
 visible = false
+drop_location = NodePath("../Head/DropLocation")
 
 [node name="Inventory" type="Node" parent="."]
 script = ExtResource("2_1oopm")

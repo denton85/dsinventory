@@ -27,13 +27,14 @@ func swap_two_slots(from_index, to_index):
 	inventory[to_index] = slot1
 	update_inventory_ui.emit()
 	
-func drop_item(index):
+func drop_item(index, position):
 	if inventory[index] == null:
 		return
 	var dropped_item = ITEM_SCENE.instantiate()
 	dropped_item.item = inventory[index]
-	dropped_item.global_position = Global.playervar.drop_location.global_position
-	Global.main.add_child(dropped_item)
+	dropped_item.global_position = position
+	
+	DSGlobal.main.add_child(dropped_item)
 	inventory[index] = null
 	update_inventory_ui.emit()
 	

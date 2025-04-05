@@ -11,9 +11,6 @@ var parent = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	#for slot in grid_container.get_children():
-		#slot.queue_free()
-	
 	for i in (inventory.inventory_size):
 		var slot = SLOT.instantiate()
 		grid_container.add_child(slot)

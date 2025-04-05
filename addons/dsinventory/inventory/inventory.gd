@@ -5,8 +5,6 @@ var inventory = []
 @export var inventory_size = 12
 
 signal update_inventory_ui
-var current_focused_item: ItemScene = null
-var next_focused_items: Array = []
 
 # Basic Item Scene
 const ITEM_SCENE = preload("res://addons/dsinventory/inventory/item_scene.tscn")

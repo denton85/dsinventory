@@ -12,9 +12,8 @@ var speed = WALK_SPEED
 @onready var inventory_ui: Control = $InventoryUI
 @onready var inventory: Inventory = $Inventory
 @onready var drop_location: Node3D = $Head/DropLocation
+@onready var item_detect: ItemDetect = $Head/Camera3D/ItemDetect
 
-#var current_focused_item: ItemScene = null
-#var next_focused_items: Array = []
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -45,13 +44,13 @@ func _physics_process(delta: float) -> void:
 	
 		
 	if Input.is_action_just_pressed("interact"):
-		if inventory.current_focused_item != null:
+		if item_detect.current_focused_item != null:
 			#TODO Check if the inventory is full
 			var size = inventory.inventory.size()
 			for i in size:
 				if inventory.inventory[i] == null:
-					inventory.pickup_item(inventory.current_focused_item)
-					inventory.current_focused_item.queue_free()
+					inventory.pickup_item(item_detect.current_focused_item)
+					item_detect.current_focused_item.queue_free()
 					break
 		
 	if Input.is_action_pressed("sprint"):

@@ -7,8 +7,8 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_cikhs"]
 radius = 1.0
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_slv10"]
-size = Vector3(0.2, 0.7, 1.5)
+[sub_resource type="BoxShape3D" id="BoxShape3D_0o10o"]
+size = Vector3(0.3, 0.8, 2)
 
 [node name="ItemScene" type="RigidBody3D"]
 collision_layer = 192
@@ -26,7 +26,7 @@ collision_mask = 128
 shape = SubResource("SphereShape3D_cikhs")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("BoxShape3D_slv10")
+shape = SubResource("BoxShape3D_0o10o")
 
 [connection signal="body_entered" from="Interactable" to="." method="_on_interact_able_body_entered"]
 [connection signal="body_exited" from="Interactable" to="." method="_on_interact_able_body_exited"]

@@ -2,14 +2,17 @@ class_name Inventory
 extends Node
 
 var inventory = []
+@export var inventory_size = 12
 
 signal update_inventory_ui
+var current_focused_item: ItemScene = null
+var next_focused_items: Array = []
 
 # Basic Item Scene
 const ITEM_SCENE = preload("res://addons/dsinventory/inventory/item_scene.tscn")
 
 func _ready() -> void:
-	inventory.resize(12)
+	inventory.resize(inventory_size)
 
 func add_to_inventory(item, index):
 	inventory[index] = item
@@ -40,12 +43,9 @@ func pickup_item(item_scene):
 	for i in inventory.size():
 		var index = i
 		if inventory[index] != null:
-			print("Slot is full")
 			continue
 		elif inventory[index] == null:
 			add_to_inventory(item_scene.item, index)
-			print(inventory)
-			print(index)
 			break
 			
 

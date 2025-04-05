@@ -32,11 +32,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.52689, -0.597573, -0.948149)
 size = Vector3(0.1, 0.1, 1.5)
 
-[node name="ItemDetect" type="Area3D" parent="Head/Camera3D"]
+[node name="ItemDetect" type="Area3D" parent="Head/Camera3D" node_paths=PackedStringArray("inventory")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
 collision_layer = 128
 collision_mask = 128
 script = ExtResource("2_r8pmr")
+inventory = NodePath("../../../Inventory")
 metadata/_custom_type_script = "uid://ixtn7yrm4lcq"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Head/Camera3D/ItemDetect"]
@@ -52,6 +53,3 @@ visible = false
 [node name="Inventory" type="Node" parent="."]
 script = ExtResource("2_1oopm")
 metadata/_custom_type_script = "uid://yqiegexr76au"
-
-[connection signal="body_entered" from="Head/Camera3D/ItemDetect" to="." method="_on_item_detect_body_entered"]
-[connection signal="body_exited" from="Head/Camera3D/ItemDetect" to="." method="_on_item_detect_body_exited"]

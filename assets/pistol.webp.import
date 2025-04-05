@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cacisdwsna4x4"
-path="res://.godot/imported/pistol.webp-efda8cec4bf0c049eeb419dad7ed0e04.ctex"
+path="res://.godot/imported/pistol.webp-d5790f3de27da010186a484367bd44e6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://pistol.webp"
-dest_files=["res://.godot/imported/pistol.webp-efda8cec4bf0c049eeb419dad7ed0e04.ctex"]
+source_file="res://assets/pistol.webp"
+dest_files=["res://.godot/imported/pistol.webp-d5790f3de27da010186a484367bd44e6.ctex"]
 
 [params]
 

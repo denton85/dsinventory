@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dep7vixw4qj7m"]
+[gd_scene load_steps=2 format=3 uid="uid://dep7vixw4qj7m"]
 
 [ext_resource type="Script" uid="uid://bbbnwqhfw0wn5" path="res://addons/dsinventory/inventory/inventory_ui.gd" id="1_633jv"]
-[ext_resource type="PackedScene" uid="uid://cyvbwenxwvij5" path="res://addons/dsinventory/inventory/slot.tscn" id="2_a0nm8"]
 
 [node name="InventoryUI" type="Control"]
 layout_mode = 3
@@ -43,39 +42,3 @@ grow_vertical = 2
 theme_override_constants/h_separation = 40
 theme_override_constants/v_separation = 40
 columns = 4
-
-[node name="Slot" parent="GridContainer" instance=ExtResource("2_a0nm8")]
-layout_mode = 2
-
-[node name="Slot2" parent="GridContainer" instance=ExtResource("2_a0nm8")]
-layout_mode = 2
-
-[node name="Slot3" parent="GridContainer" instance=ExtResource("2_a0nm8")]
-layout_mode = 2
-
-[node name="Slot4" parent="GridContainer" instance=ExtResource("2_a0nm8")]
-layout_mode = 2
-
-[node name="Slot5" parent="GridContainer" instance=ExtResource("2_a0nm8")]
-layout_mode = 2
-
-[node name="Slot6" parent="GridContainer" instance=ExtResource("2_a0nm8")]
-layout_mode = 2
-
-[node name="Slot7" parent="GridContainer" instance=ExtResource("2_a0nm8")]
-layout_mode = 2
-
-[node name="Slot8" parent="GridContainer" instance=ExtResource("2_a0nm8")]
-layout_mode = 2
-
-[node name="Slot9" parent="GridContainer" instance=ExtResource("2_a0nm8")]
-layout_mode = 2
-
-[node name="Slot10" parent="GridContainer" instance=ExtResource("2_a0nm8")]
-layout_mode = 2
-
-[node name="Slot11" parent="GridContainer" instance=ExtResource("2_a0nm8")]
-layout_mode = 2
-
-[node name="Slot12" parent="GridContainer" instance=ExtResource("2_a0nm8")]
-layout_mode = 2

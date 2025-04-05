@@ -2,7 +2,7 @@
 
 [ext_resource type="ArrayMesh" uid="uid://bopb2ktu6pj00" path="res://assets/rifle.obj" id="1_c3f6e"]
 [ext_resource type="Script" uid="uid://b72g3dabbtxb" path="res://addons/dsinventory/item.gd" id="1_k5vmf"]
-[ext_resource type="Texture2D" uid="uid://d0usujncetcgl" path="res://rifle.webp" id="2_6k4q7"]
+[ext_resource type="Texture2D" uid="uid://d0usujncetcgl" path="res://assets/rifle.webp" id="2_6k4q7"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_c3f6e"]
 size = Vector3(0.2, 0.7, 2)

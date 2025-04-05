@@ -13,8 +13,8 @@ var speed = WALK_SPEED
 @onready var inventory: Inventory = $Inventory
 @onready var drop_location: Node3D = $Head/DropLocation
 
-var current_focused_item: ItemScene = null
-var next_focused_items: Array = []
+#var current_focused_item: ItemScene = null
+#var next_focused_items: Array = []
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -45,9 +45,14 @@ func _physics_process(delta: float) -> void:
 	
 		
 	if Input.is_action_just_pressed("interact"):
-		if current_focused_item != null:
-			inventory.pickup_item(current_focused_item)
-			current_focused_item.queue_free()
+		if inventory.current_focused_item != null:
+			#TODO Check if the inventory is full
+			var size = inventory.inventory.size()
+			for i in size:
+				if inventory.inventory[i] == null:
+					inventory.pickup_item(inventory.current_focused_item)
+					inventory.current_focused_item.queue_free()
+					break
 		
 	if Input.is_action_pressed("sprint"):
 		speed = SPRINT_SPEED
@@ -71,24 +76,3 @@ func _physics_process(delta: float) -> void:
 		
 
 	move_and_slide()
-
-func _on_item_detect_body_entered(body: Node3D) -> void:
-	if body is ItemScene:
-		if current_focused_item != null:
-			next_focused_items.append(body)
-		else:
-			current_focused_item = body
-
-func _on_item_detect_body_exited(body: Node3D) -> void:
-	#TODO fix this later in case of overlapping items
-	if body is ItemScene:
-		if current_focused_item == body:
-			current_focused_item = null
-			if next_focused_items.is_empty():
-				return
-			else:
-				current_focused_item = next_focused_items[0]
-				next_focused_items.remove_at(0)
-		else:
-			var index = next_focused_items.find(body)
-			next_focused_items.remove_at(index)

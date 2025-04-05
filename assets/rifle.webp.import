@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d0usujncetcgl"
-path="res://.godot/imported/rifle.webp-82fa0a5453fcc4d60f1f3907e29b297a.ctex"
+path="res://.godot/imported/rifle.webp-ec23f693b8787030f1651fd971f4b58b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://rifle.webp"
-dest_files=["res://.godot/imported/rifle.webp-82fa0a5453fcc4d60f1f3907e29b297a.ctex"]
+source_file="res://assets/rifle.webp"
+dest_files=["res://.godot/imported/rifle.webp-ec23f693b8787030f1651fd971f4b58b.ctex"]
 
 [params]
 

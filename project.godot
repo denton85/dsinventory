@@ -16,11 +16,15 @@ config/features=PackedStringArray("4.4", "Forward Plus")
 
 [autoload]
 
-DsGlobal="*res://addons/dsinventory/DSGlobal.gd"
+DsGlobal="*res://addons/dsinventory/DsGlobal.gd"
 
 [display]
 
 window/size/mode=3
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/dsinventory/plugin.cfg")
 
 [input]
 

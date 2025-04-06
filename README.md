@@ -7,8 +7,7 @@ per slot. Quantities will come at a later time.
 
 Currently, the system should work if you follow these steps (also let me know if it doesn't work):
 
-1. Pull the **DSInventory** folder into your own addons folder. It does not need to be activated. Set the DSGlobal script to an autoload in your editor: **Project>Project Settings>Globals**.
-This will probably change since this Global script is only used once, but whatever.
+1. Pull the **DSInventory** folder into your own addons folder. It will need to be activated, and you may need to reload the project. 
 
 2. In your main root scene (preferably the one that acts as the 3D world in your game, or current level) set DSGlobal.main to self in the _ready() function like this:
 ```

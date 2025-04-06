@@ -13,7 +13,7 @@ This will probably change since this Global script is only used once, but whatev
 2. In your main root scene (preferably the one that acts as the 3D world in your game, or current level) set DSGlobal.main to self in the _ready() function like this:
 ```
 func _ready() -> void:
-	  DSGlobal.main = self
+	  DsGlobal.main = self
 ```
 This will need to be on all current "levels" or 3D worlds.
 

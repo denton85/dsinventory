@@ -27,7 +27,7 @@ should be a direct child of the Player.
 it under the camera so it rotates to always be in front of the Player. This will be where items spawn when you drop them from the inventory. In the InventoryUI node, select that drop location Node3D for the
 "Drop Location" exported variable.
 
-6. Add a few ItemScenes (found in DSInventory/Inventory folder, called item_scene.tscn) to your main scene. The test item resources (found in the DSInventory/Items folder, called pistol.tres and rifle.tres) can be dragged into the "Item" exported variable, and will
+6. Add a few ItemScene nodes to your main scene. The test item resources (found in the DSInventory/Items folder, called pistol.tres and rifle.tres) can be dragged into the "Item" exported variable, and will
 update in real time in the editor. You should see the mesh appear.
 
 7. Add these input actions to your Project Settings>Input Map. "right_click" - set to right click of course. "toggle_inventory", "pickup", "drop_item" can all be set to whatever you want. "drop_item" is just a

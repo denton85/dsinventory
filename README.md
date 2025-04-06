@@ -13,7 +13,7 @@ This will probably change since this Global script is only used once, but whatev
 2. In your main root scene (preferably the one that acts as the 3D world in your game, or current level) set DSGlobal.main to self in the _ready() function like this:
 ```
 func _ready() -> void:
-	  DsGlobal.main = self
+    DsGlobal.main = self
 ```
 This will need to be on all current "levels" or 3D worlds.
 
@@ -25,19 +25,23 @@ so the collision shape points where you are looking. It will detect items and ha
 The Inventory node should be a direct child of the Player.
 
 6. Set the ItemDetect exported variable "Inventory" to be your Inventory node.
+
 ![itemdetectsnip](https://github.com/user-attachments/assets/b5f51db8-8265-4c9a-b905-1c947f7f9e58)
 
 Set your "Inventory Size" variable in the Inventory node to be the amount of slots you want. It defaults to 12.
+
 ![inventorysize](https://github.com/user-attachments/assets/f029c7b4-4313-4278-9075-6fab3246e174)
 
    
 9. Instantiate the InventoryUI node as a direct child to your Player (control + shift + a, enable addons to see the InventoryUI node). Add a new Node3D (call it DropLocation or something) to your Player. It can be anywhere, but I placed
 it under the camera so it rotates to always be in front of the Player. This will be where items spawn when you drop them from the inventory. In the InventoryUI node, select that drop location Node3D for the
 "Drop Location" exported variable.
+
 ![uisnip](https://github.com/user-attachments/assets/e93f8c31-ec95-45c6-a27c-0d19ca5f8ba1)
 
 
 Your Player Tree should look something like this:
+
 ![playertree](https://github.com/user-attachments/assets/1543666e-7011-4a6f-ae70-7db96f99526e)
 
 

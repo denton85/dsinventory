@@ -23,14 +23,14 @@ should be a direct child of the Player.
 
 4. Set the ItemDetect exported variable "Inventory" to be your Inventory node. Set your "Inventory Size" variable in the Inventory node to be the amount of slots you want. It defaults to 12.
    
-5. Add the InventoryUI scene (located in DSInventory/Inventory folder) as a direct child to your Player. Add a new Node3D (call it drop location or something) to your Player. It can be anywhere, but I placed
+5. Instantiate the InventoryUI node as a direct child to your Player (control + shift + a, enable addons to see the InventoryUI node). Add a new Node3D (call it DropLocation or something) to your Player. It can be anywhere, but I placed
 it under the camera so it rotates to always be in front of the Player. This will be where items spawn when you drop them from the inventory. In the InventoryUI node, select that drop location Node3D for the
 "Drop Location" exported variable.
 
-6. Add a few ItemScenes (found in DSInventory/Inventory folder, called item_scene.tscn) to your main scene. The test item resources (found in the DSInventory/Items folder, called pistol.tres and rifle.tres) can be dragged into the "Item" exported variable, and will
+6. Instantiate a few ItemScene nodes in your Main scene (control + shift + a, with addons enabled still). The test item resources (found in the DSInventory/Items folder, called pistol.tres and rifle.tres) can be dragged into the "Item" exported variable, and will
 update in real time in the editor. You should see the mesh appear.
 
-7. Add these input actions to your Project Settings>Input Map. "right_click" - set to right click of course. "toggle_inventory", "pickup", "drop_item" can all be set to whatever you want. "drop_item" is just a
+7. Add these input actions to your Project Settings>Input Map. "right_click" and "left_click" set to the mouse buttons of course. "toggle_inventory", "pickup", "drop_item" can all be set to whatever you want. "drop_item" is just a
 hotkey for when you hover over an item and want to drop it, "right_click" is for opening the UI to drop an item by clicking a button. You can expand this UI if you are more functionality to the menu. 
 
 In general, the UI is just a mockup, mess around with it. Quantities are not added yet (the variables are there, but no logic to handle them yet).

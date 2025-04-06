@@ -23,7 +23,7 @@ should be a direct child of the Player.
 
 4. Set the ItemDetect exported variable "Inventory" to be your Inventory node. Set your "Inventory Size" variable in the Inventory node to be the amount of slots you want. It defaults to 12.
    
-5. Add the InventoryUI scene (located in DSInventory/Inventory folder) as a direct child to your Player. Add a new Node3D (call it drop location or something) to your Player. It can be anywhere, but I placed
+5. Add the InventoryUI node as a direct child to your Player. Add a new Node3D (call it drop location or something) to your Player. It can be anywhere, but I placed
 it under the camera so it rotates to always be in front of the Player. This will be where items spawn when you drop them from the inventory. In the InventoryUI node, select that drop location Node3D for the
 "Drop Location" exported variable.
 

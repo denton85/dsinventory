@@ -17,7 +17,12 @@ func _ready() -> void:
 ```
 This will need to be on all current "levels" or 3D worlds.
 
-3. In your Player scene, instantiate the ItemDetect node (control + shift + a, enable addons to see the ItemDetect node). Also add the Inventory node as direct child of the player node (doesn't need to be instantiated, just hit the plus symbol and search for Inventory).
+3. In your Player scene, instantiate the ItemDetect node (control + shift + a, enable addons to see the ItemDetect node). 
+
+![instantiate](https://github.com/user-attachments/assets/7027c78f-503a-4c8e-8ccb-28dbff0e4c99)
+
+
+Also add the Inventory node as direct child of the player node (doesn't need to be instantiated, just hit the plus symbol and search for Inventory).
 
 ItemDetect will be an Area3D, so it will have a collision shape. In the example project, I added it as a child to the camera,
 so the collision shape points where you are looking. It will detect items and handle pickups. The collision layer and mask for item detection is layer 8, but that should already be there since it is an instantiated scene. It can technically go anywhere on the Player, but it depends on how you want to do it. 

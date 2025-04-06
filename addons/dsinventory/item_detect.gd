@@ -11,7 +11,6 @@ func _init() -> void:
 	body_entered.connect(_on_item_detect_body_entered)
 	body_exited.connect(_on_item_detect_body_exited)
 	
-
 func _on_item_detect_body_entered(body: Node3D) -> void:
 	if body is ItemScene:
 		if current_focused_item != null:

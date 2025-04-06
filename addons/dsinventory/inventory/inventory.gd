@@ -2,6 +2,8 @@ class_name Inventory
 extends Node
 
 var inventory = []
+
+## Assign your inventory size here. This is how many slots there will be.
 @export var inventory_size = 12
 
 signal update_inventory_ui

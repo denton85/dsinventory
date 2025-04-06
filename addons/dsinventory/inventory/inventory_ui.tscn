@@ -13,18 +13,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_633jv")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(1, 0.756863, 1, 0.396078)
-
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8

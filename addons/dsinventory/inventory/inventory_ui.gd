@@ -1,9 +1,9 @@
+@tool
 class_name InventoryUI
 extends Control
 
-#Assign a drop location on the player somewhere, this will be where the item gets dropped
+## Assign a Node3D to your player as a drop location, then set it here. This will be where the item spawns when dropping items from your inventory. Make sure the Node3D is in a sensible place, rotating relative to the player so the items don't get dropped behind them if possible.
 @export var drop_location: Node3D
-
 
 @onready var grid_container: GridContainer = %GridContainer
 @onready var inventory: Inventory = $"../Inventory"

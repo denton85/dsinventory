@@ -1,7 +1,8 @@
 class_name ItemDetect
 extends Area3D
 
-@export var inventory = Node3D
+## Set Your Inventory Node Here (*Not the InventoryUI Control Node*)
+@export var inventory: Inventory
 
 var current_focused_item: ItemScene = null
 var next_focused_items: Array = []
@@ -19,7 +20,7 @@ func _on_item_detect_body_entered(body: Node3D) -> void:
 			current_focused_item = body
 
 func _on_item_detect_body_exited(body: Node3D) -> void:
-	#TODO fix this later in case of overlapping items
+	#TODO fix this later in case of overlapping items. (MIGHT ACTUALLY WORK FINE ALREADY?)
 	if body is ItemScene:
 		if current_focused_item == body:
 			current_focused_item = null

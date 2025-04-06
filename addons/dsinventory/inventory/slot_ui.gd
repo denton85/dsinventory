@@ -1,6 +1,8 @@
 extends TextureRect
 
 @onready var item_name: Label = $ItemName
+
+#This is bad, if you update the UI with your own system, make sure to update this Path.
 @onready var inventory_ui: InventoryUI = $"../../../.."
 
 var slot_index: int
@@ -24,11 +26,14 @@ func _on_mouse_entered() -> void:
 
 func _on_mouse_exited() -> void:
 	hovering = false
-
-func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("drop_item") and hovering == true:
+	
+func _unhandled_input(event: InputEvent) -> void:
+	# Only this event handled here, not really necesarry either way to have outside of process
+	if event.is_action_pressed("drop_item") and hovering == true:
 		drop_hovered_item()
 		
+func _process(delta: float) -> void:
+	# Would Rather not have this in the process
 	if Input.is_action_just_pressed("right_click") and hovering == true:
 		menu_hovering = true
 		%MenuPanel.visible = true

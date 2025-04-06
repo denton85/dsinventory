@@ -18,26 +18,26 @@ This will need to be on all current "levels" or 3D worlds.
 
 3. In your Player scene, instantiate the **ItemDetect** node (control + shift + a, enable addons to see the ItemDetect node). 
 
-![instantiate](https://github.com/user-attachments/assets/7027c78f-503a-4c8e-8ccb-28dbff0e4c99)
-
-
-Also add the **Inventory node** as direct child of the player node (doesn't need to be instantiated, just hit the plus symbol and search for Inventory).
-
 ItemDetect will be an Area3D, so it will have a collision shape. In the example project, I added it as a child to the camera,
 so the collision shape points where you are looking. It will detect items and handle pickups. The collision layer and mask for item detection is layer 8, but that should already be there since it is an instantiated scene. It can technically go anywhere on the Player, but it depends on how you want to do it. 
 
+![instantiate](https://github.com/user-attachments/assets/7027c78f-503a-4c8e-8ccb-28dbff0e4c99)
+
+
+4. Also add the **Inventory node** as direct child of the player node (doesn't need to be instantiated, just hit the plus symbol and search for Inventory).
+
 The Inventory node should be a **direct** child of the Player.
 
-6. Set the **ItemDetect** exported variable **"Inventory"** to be your **Inventory node**.
+5. Set the **ItemDetect** exported variable **"Inventory"** to be your **Inventory node**.
 
 ![itemdetectsnip](https://github.com/user-attachments/assets/b5f51db8-8265-4c9a-b905-1c947f7f9e58)
 
-Set your **"Inventory Size"** variable in the **Inventory node** to be the amount of slots you want. It defaults to 12.
+6. Set your **"Inventory Size"** variable in the **Inventory node** to be the amount of slots you want. It defaults to 12.
 
 ![inventorysize](https://github.com/user-attachments/assets/f029c7b4-4313-4278-9075-6fab3246e174)
 
    
-9. **Instantiate the InventoryUI node as a direct child to your Player** (control + shift + a, **enable addons** to see the InventoryUI node). Add a new Node3D (call it DropLocation or something) to your Player. It can be anywhere, but I placed
+7. **Instantiate the InventoryUI node as a direct child to your Player** (control + shift + a, **enable addons** to see the InventoryUI node). Add a new Node3D (call it DropLocation or something) to your Player. It can be anywhere, but I placed
 it under the camera so it rotates to always be in front of the Player. This will be where items spawn when you drop them from the inventory. In the **InventoryUI** node, select that **drop location Node3D** for the
 "Drop Location" exported variable.
 
@@ -49,10 +49,10 @@ Your Player Tree should look something like this:
 ![playertree](https://github.com/user-attachments/assets/1543666e-7011-4a6f-ae70-7db96f99526e)
 
 
-9. **Instantiate** a few **ItemScene nodes** in your Main scene (control + shift + a, with addons enabled still). The test item resources (found in the DSInventory/Items folder, called pistol.tres and rifle.tres) can be dragged into the "Item" exported variable, and will
+8. **Instantiate** a few **ItemScene nodes** in your Main scene (control + shift + a, with addons enabled still). The test item resources (found in the DSInventory/Items folder, called pistol.tres and rifle.tres) can be dragged into the "Item" exported variable, and will
 update in real time in the editor. You should see the mesh appear.
 
-10. **Add these input actions to your Project Settings>Input Map**. **"right_click"** and **"left_click"** set to the mouse buttons of course. **"toggle_inventory"**, **"pickup"**, **"drop_item"** can all be set to whatever you want. "drop_item" is just a
+9. **Add these input actions to your Project Settings>Input Map**. **"right_click"** and **"left_click"** set to the mouse buttons of course. **"toggle_inventory"**, **"pickup"**, **"drop_item"** can all be set to whatever you want. "drop_item" is just a
 hotkey for when you hover over an item and want to drop it, "right_click" is for opening the UI to drop an item by clicking a button. You can expand this UI if you are more functionality to the menu. 
 
 Your main scene tree might look like this:

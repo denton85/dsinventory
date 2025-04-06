@@ -61,3 +61,8 @@ Your main scene tree might look like this:
 
 
 In general, the UI is just a mockup, mess around with it. Quantities are not added yet (the variables are there, but no logic to handle them yet).
+
+TODO: 
+	1. Add Quantities/Stack Sizes to items
+	2. Make initial setup/updating easier
+	3. Custom Item Types?

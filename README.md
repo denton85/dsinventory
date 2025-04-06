@@ -5,7 +5,7 @@ Shoutout to Nujank for the inspiration and teaching me how to do stuff.
 This is an extremely simple Inventory System for Godot (works in 4.4, not sure about earlier versions). Does not yet support Item Stacks (quantities of items in the same slot), for now it just holds one item 
 per slot. Quantities will come at a later time.
 
-Currently, the system should work if you follow these steps:
+Currently, the system should work if you follow these steps (also let me know if it doesn't work):
 
 1. Pull the DSInventory folder into your own addons folder. It does not need to be activated. Set the DSGlobal script to an autoload in your editor: Project>Project Settings>Globals.
 This will probably change since this Global script is only used once, but whatever.

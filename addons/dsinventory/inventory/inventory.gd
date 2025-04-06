@@ -36,7 +36,7 @@ func drop_item(index, position):
 	dropped_item.item = inventory[index]
 	dropped_item.global_position = position
 	
-	DSGlobal.main.add_child(dropped_item)
+	DsGlobal.main.add_child(dropped_item)
 	inventory[index] = null
 	update_inventory_ui.emit()
 	

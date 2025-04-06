@@ -36,7 +36,6 @@ func _on_item_detect_body_exited(body: Node3D) -> void:
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("pickup"):
 		if current_focused_item != null:
-			#TODO Check if the inventory is full
 			var size = inventory.inventory.size()
 			for i in size:
 				if inventory.inventory[i] == null:

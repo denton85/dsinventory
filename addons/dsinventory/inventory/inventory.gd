@@ -13,14 +13,11 @@ const ITEM_SCENE = preload("res://addons/dsinventory/inventory/item_scene.tscn")
 
 func _ready() -> void:
 	inventory.resize(inventory_size)
-	inventory.fill(ItemSlot)
 	for i in inventory.size():
 		var index = i - 1
 		inventory[i] = ItemSlot.new()
-	print(inventory)
 
 func add_to_inventory(item: Item, index):
-	print("add_to_inventory")
 	inventory[index].item = item
 	inventory[index].quantity += 1
 	update_inventory_ui.emit()
@@ -31,17 +28,19 @@ func remove_from_inventory(index):
 	update_inventory_ui.emit()
 
 func check_swap_or_increase(from_index: int, to_index: int):
-	if inventory[from_index].item != inventory[to_index].item:
-		swap_two_slots(from_index, to_index)
-		print("Items don't match")
-	elif (inventory[to_index].quantity + inventory[from_index].quantity) > inventory[to_index].item.max_stack_size:
-		swap_two_slots(from_index, to_index)
+	if inventory[from_index].item != null and inventory[to_index].item != null:
+		if inventory[from_index].item != inventory[to_index].item:
+			swap_two_slots(from_index, to_index)
+		elif (inventory[to_index].quantity + inventory[from_index].quantity) > inventory[to_index].item.max_stack_size:
+			swap_two_slots(from_index, to_index)
+		else:
+			increase_stack(to_index, inventory[from_index].quantity)
+			decrease_stack(from_index, inventory[from_index].quantity)
+			if inventory[from_index].quantity <= 0:
+				inventory[from_index].item = null
+			update_inventory_ui.emit()
 	else:
-		increase_stack(to_index, inventory[from_index].quantity)
-		decrease_stack(from_index, inventory[from_index].quantity)
-		if inventory[from_index].quantity <= 0:
-			inventory[from_index].item = null
-		update_inventory_ui.emit()
+		swap_two_slots(from_index, to_index)
 
 func swap_two_slots(from_index, to_index):
 	var slot1 = inventory[from_index]

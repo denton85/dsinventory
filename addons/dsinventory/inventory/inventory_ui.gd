@@ -28,7 +28,7 @@ func _ready() -> void:
 func update_slots():
 	var i = 0
 	for slot in grid_container.get_children():
-		if inventory.inventory[i] != null:
+		if inventory.inventory[i].item != null:
 			slot.update(inventory.inventory[i])
 		else:
 			slot.update(null)

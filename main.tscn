@@ -77,6 +77,27 @@ item = ExtResource("4_lquwl")
 [node name="ItemScene2" parent="." instance=ExtResource("4_p7ads")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.39864, 1.5, -1.20086)
 
+[node name="ItemScene17" parent="." instance=ExtResource("4_p7ads")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.62594, 1.5, 3.31207)
+
+[node name="ItemScene18" parent="." instance=ExtResource("4_p7ads")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.9857, 1.5, 3.31207)
+
+[node name="ItemScene19" parent="." instance=ExtResource("4_p7ads")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.79699, 1.5, 6.38559)
+
+[node name="ItemScene20" parent="." instance=ExtResource("4_p7ads")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.775, 1.5, 6.38559)
+
+[node name="ItemScene21" parent="." instance=ExtResource("4_p7ads")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.2166, 1.5, 6.38559)
+
+[node name="ItemScene22" parent="." instance=ExtResource("4_p7ads")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.2166, 1.5, 0.955602)
+
+[node name="ItemScene23" parent="." instance=ExtResource("4_p7ads")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.2645, 1.5, 0.955602)
+
 [node name="ItemScene3" parent="." instance=ExtResource("4_p7ads")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.73458, 1.5, -1.20086)
 

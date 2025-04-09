@@ -1,6 +1,7 @@
 extends TextureRect
 
 @onready var item_name: Label = $ItemName
+@onready var quantity: Label = $Quantity
 
 #This is bad, if you update the UI with your own system, make sure to update this Path.
 @onready var inventory_ui: InventoryUI = $"../../../.."
@@ -12,14 +13,16 @@ var menu_hovering = false
 func _ready():
 	update(null)
 
-func update(item: Item):
+func update(item: ItemSlot):
 	if item == null:
 		texture = null
 		item_name.text = ""
+		quantity.text = ""
 		return
 	item_name.text = ""
-	texture = item.texture
-	item_name.text = item.name
+	texture = item.item.texture
+	item_name.text = item.item.name
+	quantity.text = str(item.quantity)
 
 func _on_mouse_entered() -> void:
 	hovering = true
@@ -44,7 +47,9 @@ func _process(delta: float) -> void:
 		inventory_ui.to_slot = slot_index
 		
 		if inventory_ui.from_slot != null and inventory_ui.to_slot != null:
-			inventory_ui.inventory.swap_two_slots(inventory_ui.from_slot, inventory_ui.to_slot)
+			if inventory_ui.from_slot == inventory_ui.to_slot:
+				return
+			inventory_ui.inventory.check_swap_or_increase(inventory_ui.from_slot, inventory_ui.to_slot)
 		
 		inventory_ui.from_slot = null
 		inventory_ui.to_slot = null

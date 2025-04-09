@@ -13,3 +13,4 @@ name = "Pistol"
 texture = ExtResource("3_y4c4l")
 mesh = ExtResource("1_0o10o")
 collision_shape = SubResource("BoxShape3D_0o10o")
+max_stack_size = 4

@@ -13,3 +13,4 @@ name = "Rifle"
 texture = ExtResource("2_6k4q7")
 mesh = ExtResource("1_c3f6e")
 collision_shape = SubResource("BoxShape3D_c3f6e")
+max_stack_size = 2

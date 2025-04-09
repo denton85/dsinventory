@@ -1,5 +1,5 @@
 class_name ItemSlot
-extends Node
+extends Resource
 
-@export var item = null
-@export var quantity = 0
+var item: Item = null
+var quantity: int = 0

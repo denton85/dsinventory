@@ -17,6 +17,11 @@ offset_right = 53.0
 offset_bottom = 91.0
 text = "Test"
 
+[node name="Quantity" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
 [node name="ColorRect" type="ColorRect" parent="."]
 show_behind_parent = true
 layout_mode = 0

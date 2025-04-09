@@ -34,10 +34,16 @@ func _on_item_detect_body_exited(body: Node3D) -> void:
 
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("pickup"):
+		var slots = inventory.inventory
+		var full_slots = 0
+		for index in slots.size():
+			var i = index -1
+			if slots[i] == null:
+				break
+			if slots[i].item != null and slots[i].quantity == slots[i].item.max_stack_size:
+				full_slots += 1
+			if full_slots == slots.size():
+				return
 		if current_focused_item != null:
-			var size = inventory.inventory.size()
-			for i in size:
-				if inventory.inventory[i] == null:
-					inventory.pickup_item(current_focused_item)
-					current_focused_item.queue_free()
-					break
+			inventory.pickup_item(current_focused_item)
+			current_focused_item.queue_free()

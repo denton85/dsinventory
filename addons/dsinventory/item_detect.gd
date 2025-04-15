@@ -21,6 +21,8 @@ func _on_item_detect_body_entered(body: Node3D) -> void:
 func _on_item_detect_body_exited(body: Node3D) -> void:
 	#TODO fix this later in case of overlapping items. (MIGHT ACTUALLY WORK FINE ALREADY?)
 	if body is ItemScene:
+		print(current_focused_item)
+		print(next_focused_items)
 		if current_focused_item == body:
 			current_focused_item = null
 			if next_focused_items.is_empty():
@@ -33,17 +35,30 @@ func _on_item_detect_body_exited(body: Node3D) -> void:
 			next_focused_items.remove_at(index)
 
 func _unhandled_key_input(event: InputEvent) -> void:
-	if event.is_action_pressed("pickup"):
+	if event.is_action_pressed("pickup") and current_focused_item != null:
+		var pickup_node = current_focused_item
+		var item_to_pickup = pickup_node.item
 		var slots = inventory.inventory
-		var full_slots = 0
-		for index in slots.size():
-			var i = index -1
-			if slots[i] == null:
+		var has_space = false
+		
+		for slot in slots:
+			var slot_item = slot.item
+			
+			if slot_item == null:
+				has_space = true
 				break
-			if slots[i].item != null and slots[i].quantity == slots[i].item.max_stack_size:
-				full_slots += 1
-			if full_slots == slots.size():
-				return
-		if current_focused_item != null:
-			inventory.pickup_item(current_focused_item)
-			current_focused_item.queue_free()
+			
+			if slot_item.name == item_to_pickup.name and slot.quantity < slot_item.max_stack_size:
+				has_space = true
+				break
+		
+		if has_space:
+			inventory.pickup_item(item_to_pickup)
+			pickup_node.queue_free()
+			current_focused_item = null
+			
+			if not next_focused_items.is_empty():
+				current_focused_item = next_focused_items[0]
+				next_focused_items.remove_at(0)
+		else:
+			print("Inventory full — cannot pick up item.")

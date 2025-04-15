@@ -42,4 +42,5 @@ drop_location = NodePath("../Head/DropLocation")
 
 [node name="Inventory" type="Node" parent="."]
 script = ExtResource("2_1oopm")
+inventory_size = 3
 metadata/_custom_type_script = "uid://yqiegexr76au"

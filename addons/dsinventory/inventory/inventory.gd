@@ -36,8 +36,6 @@ func check_swap_or_increase(from_index: int, to_index: int):
 		else:
 			increase_stack(to_index, inventory[from_index].quantity)
 			decrease_stack(from_index, inventory[from_index].quantity)
-			if inventory[from_index].quantity <= 0:
-				inventory[from_index].item = null
 			update_inventory_ui.emit()
 	else:
 		swap_two_slots(from_index, to_index)
@@ -57,25 +55,33 @@ func drop_item(index, position):
 	dropped_item.global_position = position
 	
 	DsGlobal.main.add_child(dropped_item)
-	if inventory[index].quantity <= 0:
-		inventory[index] = null
-	else:
-		inventory[index].quantity -= 1
+	decrease_stack(index, 1)
 	update_inventory_ui.emit()
 	
-func pickup_item(item_scene: ItemScene):
+func pickup_item(item: Item):
 	for i in inventory.size():
-		var index = i
-		var slot = inventory[index]
-		if slot.item != null and slot.item == item_scene.item and is_slot_full(i) == false:
-			slot.quantity += 1
-			break
-		elif slot.item != null and slot.item == item_scene.item and is_slot_full(i) == true:
-			continue
-		elif slot.item == null:
-			add_to_inventory(item_scene.item, index)
-			break
-	update_inventory_ui.emit()
+		var slot = inventory[i]
+
+		if slot.item != null and slot.item.name == item.name:
+			if not is_slot_full(i):
+				slot.quantity += 1
+				print("Added to stack")
+				update_inventory_ui.emit()
+				return  # exit after success
+			else:
+				print("Slot full")
+				continue
+
+	for i in inventory.size():
+		var slot = inventory[i]
+		if slot.item == null:
+			add_to_inventory(item.duplicate(), i)
+			print("Added to null slot")
+			update_inventory_ui.emit()
+			return
+	
+	print("Inventory full — item could not be added.")
+
 # Needs Functionality Below
 func use_item(index):
 	pass
@@ -85,6 +91,9 @@ func increase_stack(index, amount):
 	
 func decrease_stack(index, amount):
 	inventory[index].quantity -= amount
+	if inventory[index].quantity <= 0:
+		inventory[index].item = null
+		update_inventory_ui.emit()
 
 func is_slot_full(index):
 	if inventory[index].quantity == inventory[index].item.max_stack_size:

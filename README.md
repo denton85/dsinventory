@@ -2,8 +2,7 @@
 
 Shoutout to **Nujank** for the inspiration and teaching me how to do stuff.
 
-This is an extremely simple Inventory System for Godot (works in 4.4, not sure about earlier versions). Does not yet support Item Stacks (quantities of items in the same slot), for now it just holds one item 
-per slot. Quantities will come at a later time.
+This is an extremely simple Inventory System for Godot (works in 4.4, not sure about earlier versions). 
 
 Currently, the system should work if you follow these steps (also let me know if it doesn't work):
 
@@ -14,7 +13,7 @@ Currently, the system should work if you follow these steps (also let me know if
 func _ready() -> void:
 	DsGlobal.main = self
 ```
-This will need to be on all current "levels" or 3D worlds.
+This will need to be on all current "levels" or 3D worlds. 
 
 3. In your Player scene, instantiate the **ItemDetect** node (control + shift + a, enable addons to see the ItemDetect node). 
 
@@ -52,7 +51,7 @@ Your Player Tree should look something like this:
 8. **Instantiate** a few **ItemScene nodes** in your Main scene (control + shift + a, with addons enabled still). The test item resources (found in the DSInventory/Items folder, called pistol.tres and rifle.tres) can be dragged into the "Item" exported variable, and will
 update in real time in the editor. You should see the mesh appear.
 
-9. **Add these input actions to your Project Settings>Input Map**. **"right_click"** and **"left_click"** set to the mouse buttons of course. **"toggle_inventory"**, **"pickup"**, **"drop_item"** can all be set to whatever you want. "drop_item" is just a
+9. **Add these input actions to your Project Settings>Input Map**. **"right_click"**, **"left_click"** and **middle_click** set to the mouse buttons of course. **"toggle_inventory"**, **"pickup"**, **"drop_item"** can all be set to whatever you want. "drop_item" is just a
 hotkey for when you hover over an item and want to drop it, "right_click" is for opening the UI to drop an item by clicking a button. You can expand this UI if you are more functionality to the menu. 
 
 Your main scene tree might look like this:
@@ -61,7 +60,19 @@ Your main scene tree might look like this:
 
 In general, the UI is just a mockup, mess around with it. Quantities are not added yet (the variables are there, but no logic to handle them yet).
 
+List of functions:
+	add_to_inventory(item: Item, index)
+	remove_from_inventory(index)
+	swap_two_slots(from_index, to_index)
+	drop_item(index, position)
+	pickup_item(item: Item)
+	increase_stack(index, amount)
+	decrease_stack(index, amount)
+	split_stack(from_index: int, to_index: int, amount: int)
+	check_swap_or_increase(from_index: int, to_index: int)
+	check_add_to_stack(from_index, to_index, amount: int)
+	is_slot_full(index)
+	
 TODO: 
-	1. Add Quantities/Stack Sizes to items
-	2. Make initial setup/updating easier
-	3. Custom Item Types?
+	1. Make initial setup/updating easier
+	2. Custom Item Types?

@@ -54,6 +54,36 @@ func _process(delta: float) -> void:
 		inventory_ui.from_slot = null
 		inventory_ui.to_slot = null
 	
+	if Input.is_action_just_pressed("right_click") and hovering == true:
+		inventory_ui.from_slot = slot_index
+	if Input.is_action_just_released("right_click") and hovering == true:
+		inventory_ui.to_slot = slot_index
+		if inventory_ui.from_slot != null and inventory_ui.to_slot != null:
+			if inventory_ui.from_slot == inventory_ui.to_slot:
+				return
+			
+			inventory_ui.inventory.check_add_to_stack(inventory_ui.from_slot, inventory_ui.to_slot, 1)
+		inventory_ui.from_slot = null
+		inventory_ui.to_slot = null
+		
+	if Input.is_action_just_pressed("middle_click") and hovering == true:
+		inventory_ui.from_slot = slot_index
+	if Input.is_action_just_released("middle_click") and hovering == true:
+		inventory_ui.to_slot = slot_index
+		
+		if inventory_ui.from_slot != null and inventory_ui.to_slot != null:
+			if inventory_ui.from_slot == inventory_ui.to_slot:
+				return
+				
+			var amount = inventory_ui.inventory.inventory[inventory_ui.from_slot].quantity / 2
+			amount = floor(amount)
+			if amount <= 1:
+				amount = 1
+			inventory_ui.inventory.check_add_to_stack(inventory_ui.from_slot, inventory_ui.to_slot, amount)
+			
+		inventory_ui.from_slot = null
+		inventory_ui.to_slot = null
+	
 	if menu_hovering == false:
 		%MenuPanel.visible = false
 

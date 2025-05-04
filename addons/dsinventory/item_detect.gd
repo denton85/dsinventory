@@ -21,8 +21,6 @@ func _on_item_detect_body_entered(body: Node3D) -> void:
 func _on_item_detect_body_exited(body: Node3D) -> void:
 	#TODO fix this later in case of overlapping items. (MIGHT ACTUALLY WORK FINE ALREADY?)
 	if body is ItemScene:
-		print(current_focused_item)
-		print(next_focused_items)
 		if current_focused_item == body:
 			current_focused_item = null
 			if next_focused_items.is_empty():

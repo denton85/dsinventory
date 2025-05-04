@@ -87,13 +87,13 @@ func decrease_stack(index, amount):
 
 # Functionality to split a stack by a certain amount, either into another stack or into an empty slot.
 func split_stack(from_index: int, to_index: int, amount: int):
+	if inventory[to_index].item != null && inventory[to_index].item.name != inventory[from_index].item.name:
+		return
 	if inventory[to_index].item != null && inventory[to_index].item.name == inventory[from_index].item.name:
-		print(inventory[to_index].item)
+		#print(inventory[to_index].item)
 		if is_slot_full(to_index):
 			return
 		check_add_to_stack(from_index, to_index, amount)
-	elif inventory[to_index].item != null && inventory[to_index].item.name != inventory[from_index].item.name:
-		return
 	elif inventory[to_index].item == null:
 		check_add_to_stack(from_index, to_index, amount)
 		
@@ -119,6 +119,8 @@ func check_swap_or_increase(from_index: int, to_index: int):
 func check_add_to_stack(from_index, to_index, amount: int):
 	if is_slot_full(to_index): return
 	var to = inventory[to_index]
+	if to.item != null and inventory[from_index].item.name != inventory[to_index].item.name:
+		return
 	if to.item == null:
 		add_to_inventory(inventory[from_index].item, to_index)
 		inventory[to_index].quantity = amount

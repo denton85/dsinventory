@@ -58,7 +58,7 @@ Your main scene tree might look like this:
 ![maintree](https://github.com/user-attachments/assets/42e7f566-3d54-46a9-991d-a99336c9f93a)
 
 
-In general, the UI is just a mockup, mess around with it. Quantities are not added yet (the variables are there, but no logic to handle them yet).
+In general, the UI is just a mockup, mess around with it.
 
 List of functions:
 	

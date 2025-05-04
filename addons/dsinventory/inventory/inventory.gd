@@ -134,7 +134,7 @@ func check_add_to_stack(from_index, to_index, amount: int):
 
 # Check if a slot is full.
 func is_slot_full(index):
-	if inventory[index] == null:
+	if inventory[index].item == null:
 		return false
 	if inventory[index].quantity == inventory[index].item.max_stack_size:
 		return true

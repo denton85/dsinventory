@@ -61,16 +61,27 @@ Your main scene tree might look like this:
 In general, the UI is just a mockup, mess around with it. Quantities are not added yet (the variables are there, but no logic to handle them yet).
 
 List of functions:
+	
 	add_to_inventory(item: Item, index)
+	
 	remove_from_inventory(index)
+	
 	swap_two_slots(from_index, to_index)
+	
 	drop_item(index, position)
+	
 	pickup_item(item: Item)
+	
 	increase_stack(index, amount)
+	
 	decrease_stack(index, amount)
+	
 	split_stack(from_index: int, to_index: int, amount: int)
+	
 	check_swap_or_increase(from_index: int, to_index: int)
+	
 	check_add_to_stack(from_index, to_index, amount: int)
+	
 	is_slot_full(index)
 	
 TODO: 

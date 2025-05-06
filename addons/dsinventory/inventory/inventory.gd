@@ -119,6 +119,8 @@ func check_swap_or_increase(from_index: int, to_index: int):
 func check_add_to_stack(from_index, to_index, amount: int):
 	if is_slot_full(to_index): return
 	var to = inventory[to_index]
+	if inventory[from_index].item == null:
+		return
 	if to.item != null and inventory[from_index].item.name != inventory[to_index].item.name:
 		return
 	if to.item == null:

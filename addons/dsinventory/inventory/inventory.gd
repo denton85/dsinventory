@@ -90,7 +90,6 @@ func split_stack(from_index: int, to_index: int, amount: int):
 	if inventory[to_index].item != null && inventory[to_index].item.name != inventory[from_index].item.name:
 		return
 	if inventory[to_index].item != null && inventory[to_index].item.name == inventory[from_index].item.name:
-		#print(inventory[to_index].item)
 		if is_slot_full(to_index):
 			return
 		check_add_to_stack(from_index, to_index, amount)

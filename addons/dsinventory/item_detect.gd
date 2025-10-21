@@ -43,14 +43,14 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		var item_to_pickup = pickup_node.item
 		var quantity = pickup_node.quantity
 
-		if DsGlobal.check_if_inventory_has_space(item_to_pickup, quantity):
+		if DsGlobal.check_if_inventory_has_space(item_to_pickup, quantity, inventory.inventory):
 			pass
 			inventory.pickup_item(item_to_pickup, quantity)
 			pickup_node.queue_free()
 			remove_pickup_node()
 			return
 		for i in inventory.inventory.size():
-			var partial: int = DsGlobal.check_partial_fill_at_index(item_to_pickup, quantity, i)
+			var partial: int = DsGlobal.check_partial_fill_at_index(item_to_pickup, quantity, i, inventory.inventory)
 			if partial > 0:
 			#inventory.add_to_inventory()
 				inventory.increase_stack(i, partial, inventory.inventory)

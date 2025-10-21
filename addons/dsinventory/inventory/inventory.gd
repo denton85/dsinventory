@@ -15,11 +15,11 @@ signal active_item_changed
 
 func _ready() -> void:
 	inventory.resize(inventory_size)
-	DsGlobal.inv = inventory
 	for i in inventory.size():
 		var index = i - 1
 		inventory[i] = ItemSlot.new()
 
+## Add an item to an inventory at an index, with quantity
 func add_to_inventory(item: Item, index, quantity, inv):
 	inv[index].item = item
 	inv[index].quantity += quantity

@@ -1,4 +1,5 @@
 **This is DSInventory - Deadslap's Inventory**
+** NOTE, THIS IS CURRENTLY UNDERGOING REWORKS, PROBABLY MAJORLY BROKEN **
 
 Shoutout to **Nujank** for the inspiration and teaching me how to do stuff.
 

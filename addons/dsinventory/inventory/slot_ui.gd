@@ -1,14 +1,19 @@
+class_name SlotUI
 extends TextureRect
 
 @onready var item_name: Label = $ItemName
 @onready var quantity: Label = $Quantity
 
 #This is bad, if you update the UI with your own system, make sure to update this Path.
-@onready var inventory_ui: InventoryUI = $"../../../.."
+var inventory_ui: InventoryUI
+
+@export var secondary: bool = false
+@onready var slot_index_label: Label = $SlotIndex
 
 var slot_index: int
-var hovering = false
-var menu_hovering = false
+var hovering: bool = false
+var menu_hovering: bool = false
+var is_hotbar: bool = false
 
 func _ready():
 	update(null)
@@ -19,9 +24,11 @@ func update(item: ItemSlot):
 		item_name.text = ""
 		quantity.text = ""
 		return
-	item_name.text = ""
 	texture = item.item.texture
-	item_name.text = item.item.name
+	if is_hotbar:
+		item_name.text = ""
+	else:
+		item_name.text = item.item.name
 	quantity.text = str(item.quantity)
 
 func _on_mouse_entered() -> void:
@@ -36,56 +43,60 @@ func _unhandled_input(event: InputEvent) -> void:
 		drop_hovered_item()
 		
 func _process(delta: float) -> void:
+	if inventory_ui.visible == false:
+		return
 	# Would Rather not have this in the process
 	if Input.is_action_just_pressed("right_click") and hovering == true:
 		menu_hovering = true
 		%MenuPanel.visible = true
 	
 	if Input.is_action_just_pressed("left_click") and hovering == true:
-		inventory_ui.from_slot = slot_index
-	if Input.is_action_just_released("left_click") and hovering == true:
-		inventory_ui.to_slot = slot_index
-		
-		if inventory_ui.from_slot != null and inventory_ui.to_slot != null:
-			if inventory_ui.from_slot == inventory_ui.to_slot:
-				return
-			inventory_ui.inventory.check_swap_or_increase(inventory_ui.from_slot, inventory_ui.to_slot)
-		
-		inventory_ui.from_slot = null
-		inventory_ui.to_slot = null
-	
-	if Input.is_action_just_pressed("right_click") and hovering == true:
-		inventory_ui.from_slot = slot_index
-	if Input.is_action_just_released("right_click") and hovering == true:
-		inventory_ui.to_slot = slot_index
-		if inventory_ui.from_slot != null and inventory_ui.to_slot != null:
-			if inventory_ui.from_slot == inventory_ui.to_slot:
-				return
+		set_from()
 			
-			inventory_ui.inventory.check_add_to_stack(inventory_ui.from_slot, inventory_ui.to_slot, 1)
-		inventory_ui.from_slot = null
-		inventory_ui.to_slot = null
-		
-	if Input.is_action_just_pressed("middle_click") and hovering == true:
-		inventory_ui.from_slot = slot_index
-	if Input.is_action_just_released("middle_click") and hovering == true:
-		inventory_ui.to_slot = slot_index
+	if Input.is_action_just_released("left_click") and hovering == true:
+		set_to()
 		
 		if inventory_ui.from_slot != null and inventory_ui.to_slot != null:
-			if inventory_ui.from_slot == inventory_ui.to_slot:
+			if inventory_ui.from_slot == inventory_ui.to_slot and inventory_ui.from_inv == inventory_ui.to_inv:
 				return
 				
-			var amount = inventory_ui.inventory.inventory[inventory_ui.from_slot].quantity / 2
+			inventory_ui.inventory.check_swap_or_increase(inventory_ui.from_slot, inventory_ui.to_slot, inventory_ui.from_inv, inventory_ui.to_inv)
+		
+		reset_from_to()
+	
+	if Input.is_action_just_pressed("right_click") and hovering == true:
+		set_from()
+	if Input.is_action_just_released("right_click") and hovering == true:
+		set_to()
+		if inventory_ui.from_slot != null and inventory_ui.to_slot != null:
+			if inventory_ui.from_slot == inventory_ui.to_slot and inventory_ui.from_inv == inventory_ui.to_inv:
+				return
+			
+			inventory_ui.inventory.check_add_to_stack(inventory_ui.from_slot, inventory_ui.to_slot, 1, inventory_ui.from_inv, inventory_ui.to_inv)
+		reset_from_to()
+		
+	if Input.is_action_just_pressed("middle_click") and hovering == true:
+		set_from()
+	if Input.is_action_just_released("middle_click") and hovering == true:
+		set_to()
+		
+		if inventory_ui.from_slot != null and inventory_ui.to_slot != null:
+			if inventory_ui.from_slot == inventory_ui.to_slot and inventory_ui.from_inv == inventory_ui.to_inv:
+				return
+				
+			var amount = inventory_ui.from_inv[inventory_ui.from_slot].quantity / 2
 			amount = floor(amount)
 			if amount <= 1:
 				amount = 1
-			inventory_ui.inventory.check_add_to_stack(inventory_ui.from_slot, inventory_ui.to_slot, amount)
+			inventory_ui.inventory.check_add_to_stack(inventory_ui.from_slot, inventory_ui.to_slot, amount, inventory_ui.from_inv, inventory_ui.to_inv)
 			
 		inventory_ui.from_slot = null
 		inventory_ui.to_slot = null
 	
 	if menu_hovering == false:
 		%MenuPanel.visible = false
+		
+	slot_index_label.text = str(slot_index)
 
 func _on_focus_entered() -> void:
 	hovering = true
@@ -114,10 +125,46 @@ func _drop_data(at_position: Vector2, data: Variant) -> void:
 
 func _on_drop_pressed() -> void:
 	%MenuPanel.visible = !%MenuPanel.visible
-	drop_hovered_item()
+	drop_full_stack()
 
 func _on_menu_panel_mouse_exited() -> void:
 	menu_hovering = false
 
 func drop_hovered_item():
-	inventory_ui.inventory.drop_item(slot_index, inventory_ui.drop_location.global_position)
+	var inv
+	if secondary == true:
+		inv = Global.playervar.current_outside_inventory
+	else:
+		inv = inventory_ui.inventory.inventory
+	if inventory_ui.inventory.active_item_slot == slot_index:
+		Global.playervar.reset_tool_to_nothing()
+	inventory_ui.inventory.drop_item(slot_index, inventory_ui.drop_location.global_position, inv, Global.main)
+
+func drop_full_stack():
+	var inv
+	if secondary == true:
+		inv = Global.playervar.current_outside_inventory
+	else:
+		inv = inventory_ui.inventory.inventory
+	
+	inventory_ui.inventory.drop_full_stack(slot_index, inventory_ui.drop_location.global_position, inv, Global.main)
+
+func set_to():
+	inventory_ui.to_slot = slot_index
+	if secondary == true:
+		inventory_ui.to_inv = Global.playervar.current_outside_inventory
+	else:
+		inventory_ui.to_inv = inventory_ui.inventory.inventory
+		
+func set_from():
+	inventory_ui.from_slot = slot_index
+	if secondary == true:
+		inventory_ui.from_inv = Global.playervar.current_outside_inventory
+	else:
+		inventory_ui.from_inv = inventory_ui.inventory.inventory
+		
+func reset_from_to():
+	inventory_ui.from_slot = null
+	inventory_ui.to_slot = null
+	inventory_ui.from_inv = null
+	inventory_ui.to_inv = null

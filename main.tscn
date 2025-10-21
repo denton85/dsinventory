@@ -45,48 +45,61 @@ item = ExtResource("4_lquwl")
 [node name="ItemScene2" parent="." instance=ExtResource("4_p7ads")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.6512, 1.5, -6.41401)
 item = ExtResource("4_lquwl")
+quantity = 4
 
 [node name="ItemScene8" parent="." instance=ExtResource("4_p7ads")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.6512, 1.5, -0.499216)
 item = ExtResource("4_lquwl")
+quantity = 3
 
 [node name="ItemScene9" parent="." instance=ExtResource("4_p7ads")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.35003, 1.5, -0.499216)
 item = ExtResource("4_lquwl")
+quantity = 3
 
 [node name="ItemScene10" parent="." instance=ExtResource("4_p7ads")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.3585, 1.5, -0.499216)
 item = ExtResource("4_lquwl")
+quantity = 3
 
 [node name="ItemScene11" parent="." instance=ExtResource("4_p7ads")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.3585, 1.5, -9.25119)
 item = ExtResource("4_lquwl")
+quantity = 3
 
 [node name="ItemScene3" parent="." instance=ExtResource("4_p7ads")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.6512, 1.5, -25.5716)
 item = ExtResource("4_lquwl")
+quantity = 3
 
 [node name="ItemScene4" parent="." instance=ExtResource("4_p7ads")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.1212, 1.5, -25.5716)
 item = ExtResource("4_lquwl")
+quantity = 3
 
 [node name="ItemScene5" parent="." instance=ExtResource("4_p7ads")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.1212, 1.5, -10.6347)
+quantity = 3
 
 [node name="ItemScene6" parent="." instance=ExtResource("4_p7ads")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.1212, 1.5, -3.45972)
+quantity = 3
 
 [node name="ItemScene7" parent="." instance=ExtResource("4_p7ads")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.1212, 1.5, 2.10478)
+quantity = 3
 
 [node name="ItemScene12" parent="." instance=ExtResource("4_p7ads")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.7971, 1.5, 2.10478)
+quantity = 3
 
 [node name="ItemScene13" parent="." instance=ExtResource("4_p7ads")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.7971, 1.5, 7.00815)
+quantity = 3
 
 [node name="ItemScene14" parent="." instance=ExtResource("4_p7ads")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.8192, 1.5, 7.00815)
+quantity = 3
 
 [node name="Boxes" type="Node3D" parent="."]
 

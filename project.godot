@@ -17,6 +17,7 @@ config/features=PackedStringArray("4.4", "Forward Plus")
 [autoload]
 
 DsGlobal="*res://addons/dsinventory/DsGlobal.gd"
+Global="*res://Global.gd"
 
 [display]
 

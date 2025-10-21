@@ -9,8 +9,10 @@
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_oce7q"]
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("inventory_ui", "inventory")]
 script = ExtResource("1_fl6uj")
+inventory_ui = NodePath("InventoryUI")
+inventory = NodePath("Inventory")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

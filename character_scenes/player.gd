@@ -12,6 +12,9 @@ var speed = WALK_SPEED
 @onready var drop_location: Node3D = $Head/DropLocation
 @onready var item_detect: ItemDetect = $Head/Camera3D/ItemDetect
 
+@export var inventory_ui : InventoryUI
+@export var inventory: Inventory
+
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
@@ -32,6 +35,13 @@ func _physics_process(delta: float) -> void:
 		speed = SPRINT_SPEED
 	else:
 		speed = WALK_SPEED
+		
+	if Input.is_action_just_pressed("toggle_inventory"):
+		if inventory_ui.visible == true:
+			inventory_ui.toggle_inventory_ui(false)
+		else:
+			inventory_ui.toggle_inventory_ui(true)
+			
 
 	var input_dir := Input.get_vector("left", "right", "up", "down")
 	var direction := (head.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
